@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajah Bunyi dan Cahaya - IPAS Kelas V SD</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Fredoka & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0284C7',
+                            yellow: '#F59E0B',
+                            purple: '#8B5CF6',
+                            green: '#10B981',
+                            red: '#EF4444',
+                            bg: '#F0F9FF'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Fredoka', 'sans-serif'],
+                        body: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F9FF;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Fredoka', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #E0F2FE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0284C7;
+            border-radius: 4px;
+        }
+        .btn-bounce:hover {
+            transform: translateY(-2px);
+        }
+        .btn-bounce:active {
+            transform: translateY(1px);
+        }
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #E0F2FE;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header / Navigation Bar -->
+    <header class="bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('beranda')">
+                <div class="bg-yellow-400 p-2 rounded-2xl text-slate-900 shadow">
+                    <i class="fa-solid font-bold text-2xl fa-sun text-amber-600 animate-spin-slow"></i>
+                    <i class="fa-solid font-bold text-2xl fa-wave-square text-blue-600"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">Jelajah Bunyi & Cahaya</h1>
+                    <p class="text-xs text-cyan-100 hidden sm:block">IPAS Kelas V SD Negeri 005 Singkep</p>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-2xl p-2 rounded-lg hover:bg-white/10 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-1 font-medium text-sm">
+                <button onclick="showPage('beranda')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-house"></i> Beranda</button>
+                <button onclick="showPage('tujuan')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-bullseye"></i> Tujuan</button>
+                <button onclick="showPage('bunyi')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-volume-high"></i> Bunyi</button>
+                <button onclick="showPage('cahaya')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-lightbulb"></i> Cahaya</button>
+                <button onclick="showPage('lkpd')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-file-pen"></i> LKPD</button>
+                <button onclick="showPage('kuis')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-graduation-cap"></i> Kuis</button>
+                <button onclick="showPage('refleksi')" class="nav-btn px-3 py-2 rounded-xl hover:bg-white/20 transition flex items-center gap-1.5"><i class="fa-solid fa-heart"></i> Refleksi</button>
+            </nav>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-700 border-t border-blue-500 px-4 py-3 space-y-2">
+            <button onclick="showPage('beranda'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-house w-6"></i> Beranda</button>
+            <button onclick="showPage('tujuan'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-bullseye w-6"></i> Tujuan Pembelajaran</button>
+            <button onclick="showPage('bunyi'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-volume-high w-6"></i> Materi & Simulasi Bunyi</button>
+            <button onclick="showPage('cahaya'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-lightbulb w-6"></i> Materi & Simulasi Cahaya</button>
+            <button onclick="showPage('lkpd'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-file-pen w-6"></i> LKPD Digital</button>
+            <button onclick="showPage('kuis'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-graduation-cap w-6"></i> Evaluasi / Kuis</button>
+            <button onclick="showPage('refleksi'); toggleMobileMenu()" class="w-full text-left px-3 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2"><i class="fa-solid fa-heart w-6"></i> Refleksi Belajar</button>
+        </div>
+    </header>
+
+    <!-- Notification Toast Modal -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 pointer-events-none">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-green-400 text-xl"></i>
+        <span id="toast-msg" class="font-medium">Pesan notifikasi</span>
+    </div>
+
+    <!-- Main Container Content Sections -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+
+        <!-- 1. BERANDA / APERSEPSI -->
+        <section id="page-beranda" class="page-content space-y-8">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-br from-amber-400 via-orange-400 to-rose-500 rounded-3xl p-6 md:p-10 text-white shadow-xl relative overflow-hidden">
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs md:text-sm font-semibold tracking-wider uppercase">Fase C - Kelas V SD</span>
+                    <h2 class="text-3xl md:text-5xl font-bold leading-tight">Mari Menjelajahi Rahasia Bunyi & Cahaya! 🚀</h2>
+                    <p class="text-amber-100 text-base md:text-lg">
+                        Pernahkah kamu berpikir, mengapa kita bisa mendengar bel sekolah dari jauh? Atau mengapa bayangan tubuhmu berubah panjang saat sore hari? Yuk, temukan jawabannya di sini!
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="showPage('tujuan')" class="bg-white text-orange-600 hover:bg-amber-50 px-6 py-3 rounded-2xl font-bold shadow-lg transition btn-bounce flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Mulai Petualangan
+                        </button>
+                        <button onclick="showPage('bunyi')" class="bg-orange-600/40 hover:bg-orange-600/60 border border-white/30 text-white px-6 py-3 rounded-2xl font-bold transition btn-bounce flex items-center gap-2">
+                            <i class="fa-solid fa-headphones"></i> Langsung ke Materi
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none hidden md:block">
+                    <i class="fa-solid fa-sun text-[280px]"></i>
+                </div>
+            </div>
+
+            <!-- Apersepsi / Pemicu Rasa Ingin Tahu -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="glass-card p-6 rounded-3xl shadow-md hover:shadow-lg transition border-l-8 border-l-blue-500 space-y-3">
+                    <div class="flex items-center gap-3 text-blue-600">
+                        <div class="bg-blue-100 p-3 rounded-2xl"><i class="fa-solid fa-bell text-2xl"></i></div>
+                        <h3 class="text-xl font-bold">Misteri Bunyi Bel Sekolah</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        Saat bel sekolah berbunyi, dentangannya terdengar ke seluruh penjuru lapangan. Bagaimanakah suara tersebut berjalan melintasi udara hingga sampai ke telingamu? Apakah bunyi bisa merambat di dalam air?
+                    </p>
+                    <button onclick="showPage('bunyi')" class="text-blue-600 font-bold hover:underline flex items-center gap-1 text-sm">
+                        Pelajari Rahasia Bunyi <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="glass-card p-6 rounded-3xl shadow-md hover:shadow-lg transition border-l-8 border-l-amber-500 space-y-3">
+                    <div class="flex items-center gap-3 text-amber-600">
+                        <div class="bg-amber-100 p-3 rounded-2xl"><i class="fa-solid fa-lightbulb text-2xl"></i></div>
+                        <h3 class="text-xl font-bold">Keajaiban Cahaya Senter</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        Ketika kamu menyalakan senter di kamar yang gelap, sorot cahayanya lurus menembus kegelapan. Namun mengapa saat mengenai cermin, cahayanya memantul ke tempat lain?
+                    </p>
+                    <button onclick="showPage('cahaya')" class="text-amber-600 font-bold hover:underline flex items-center gap-1 text-sm">
+                        Pelajari Rahasia Cahaya <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kartu Perbedaan Utama (Crucial Concept) -->
+            <div class="bg-indigo-900 text-white p-6 md:p-8 rounded-3xl shadow-lg space-y-4">
+                <div class="text-center max-w-xl mx-auto">
+                    <span class="bg-indigo-700 text-indigo-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Fakta Penting IPAS</span>
+                    <h3 class="text-2xl font-bold mt-2">Perbedaan Utama Bunyi & Cahaya</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                    <div class="bg-indigo-800/80 p-5 rounded-2xl border border-indigo-700 flex gap-4 items-start">
+                        <div class="bg-blue-500 text-white p-3 rounded-xl"><i class="fa-solid fa-volume-high text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-blue-300">BUNYI Membutuhkan Medium</h4>
+                            <p class="text-sm text-indigo-100 mt-1">Bunyi adalah gelombang mekanik. Bunyi **WAJIB** memiliki zat perantara (padat, cair, atau gas) untuk merambat. Di luar ruang angkasa (ruang hampa), bunyi **TIDAK BISA** terdengar!</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-800/80 p-5 rounded-2xl border border-indigo-700 flex gap-4 items-start">
+                        <div class="bg-amber-500 text-white p-3 rounded-xl"><i class="fa-solid fa-bolt text-xl"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg text-amber-300">CAHAYA Tanpa Perlu Medium</h4>
+                            <p class="text-sm text-indigo-100 mt-1">Cahaya adalah gelombang elektromagnetik. Cahaya **BISA** merambat melalui ruang hampa udara. Itulah mengapa cahaya Matahari bisa sampai ke Bumi melewati luar ruang angkasa!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. TUJUAN PEMBELAJARAN -->
+        <section id="page-tujuan" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b pb-4">
+                    <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">Capaian Pembelajaran (CP) Elemen Pemahaman IPAS</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-1">Tujuan Pembelajaran</h2>
+                    <p class="text-slate-500 text-sm mt-1">SD Negeri 005 Singkep - Kelas V Semester 1</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-blue-600 flex items-center gap-2">
+                            <i class="fa-solid fa-wave-square"></i> Sub-Materi Bunyi
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 bg-blue-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                                <span>Peserta didik mampu menjelaskan bahwa bunyi dihasilkan oleh benda yang <strong>bergetar</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3 bg-blue-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                                <span>Peserta didik dapat menganalisis perambatan bunyi melalui medium <strong>zat padat, cair, dan gas</strong>.</span>
+                            </li>
+                            <li class="flex items-start gap-3 bg-blue-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-blue-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                                <span>Peserta didik dapat membedakan fenomena pemantulan bunyi (<strong>gaung dan gema</strong>) serta penerapannya.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-amber-600 flex items-center gap-2">
+                            <i class="fa-solid fa-sun"></i> Sub-Materi Cahaya
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3 bg-amber-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-amber-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</span>
+                                <span>Peserta didik dapat mengidentifikasi <strong>sumber-sumber cahaya</strong> dan sifat cahaya merambat lurus.</span>
+                            </li>
+                            <li class="flex items-start gap-3 bg-amber-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-amber-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</span>
+                                <span>Peserta didik mampu membuktikan sifat <strong>pemantulan, pembiasan, dan penembusan</strong> pada benda bening melalui percobaan.</span>
+                            </li>
+                            <li class="flex items-start gap-3 bg-amber-50 p-3.5 rounded-2xl text-slate-700 text-sm">
+                                <span class="bg-amber-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</span>
+                                <span>Peserta didik dapat menjelaskan proses <strong>pembentukan bayangan</strong> dan penerapan sifat cahaya dalam teknologi/kehidupan sehari-hari.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 flex items-center gap-4">
+                    <div class="bg-emerald-500 text-white p-3 rounded-xl text-2xl"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div>
+                        <h4 class="font-bold text-emerald-800 text-sm">Alur Pembelajaran Interaktif:</h4>
+                        <p class="text-xs text-emerald-700">Pahami Materi ➔ Uji Simulasi ➔ Lakukan Percobaan Sederhana ➔ Isi LKPD ➔ Evaluasi Kuis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. MATERI & SIMULASI BUNYI -->
+        <section id="page-bunyi" class="page-content hidden space-y-8">
+            <div class="flex items-center justify-between bg-blue-600 text-white p-6 rounded-3xl shadow-lg">
+                <div>
+                    <span class="bg-blue-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase">Bagian 1</span>
+                    <h2 class="text-3xl font-bold mt-1">Materi & Simulasi Bunyi</h2>
+                    <p class="text-blue-100 text-sm mt-1">Bagaimana bunyi tercipta dan berpindah dari satu tempat ke tempat lain?</p>
+                </div>
+                <i class="fa-solid fa-headphones text-5xl opacity-30 hidden sm:block"></i>
+            </div>
+
+            <!-- Tab Navigasi Sub-Materi Bunyi -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 1. Sumber Bunyi & Getaran -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-3">
+                    <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold">1</div>
+                    <h3 class="text-lg font-bold text-slate-800">Getaran & Sumber Bunyi</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Semua bunyi berasal dari <strong>benda yang bergetar</strong>. Sumber bunyi adalah segala benda yang dapat menghasilkan suara.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-xl text-xs space-y-1 text-slate-500">
+                        <p><strong>Contoh:</strong></p>
+                        <p>• Pita suara di leher saat berbicara.</p>
+                        <p>• Senar gitar yang dipetik bergetar.</p>
+                        <p>• Kulit gendang yang dipukul.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Perambatan Bunyi -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-3">
+                    <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold">2</div>
+                    <h3 class="text-lg font-bold text-slate-800">Medium Perambatan</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Bunyi merambat melalui molekul zat. Kecepatan merambat bunyi paling cepat pada <strong>zat padat</strong>, lalu <strong>zat cair</strong>, dan paling lambat pada <strong>gas (udara)</strong>.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-xl text-xs space-y-1 text-slate-500">
+                        <p><strong>Contoh Medium:</strong></p>
+                        <p>• <em>Padat:</em> Telepon kaleng benang.</p>
+                        <p>• <em>Cair:</em> Suara lumba-lumba di laut.</p>
+                        <p>• <em>Gas:</em> Suara petir menembus udara.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Pemantulan Bunyi -->
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-3">
+                    <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold">3</div>
+                    <h3 class="text-lg font-bold text-slate-800">Pemantulan Bunyi</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Jika menabrak dinding keras, bunyi akan memantul.
+                    </p>
+                    <div class="bg-slate-50 p-3 rounded-xl text-xs space-y-2 text-slate-600">
+                        <p>• <strong>Gaung:</strong> Bunyi pantul terdengar <em>bersamaan</em> bunyi asli sehingga suara tidak jelas (di ruangan sempit).</p>
+                        <p>• <strong>Gema:</strong> Bunyi pantul terdengar <em>setelah</em> bunyi asli selesai (di tebing/gua).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULASI INTERAKTIF GELOMBANG BUNYI -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-blue-200 space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                    <div>
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-lg">Lab Interaktif</span>
+                        <h3 class="text-xl font-bold text-slate-800 mt-1"><i class="fa-solid fa-sliders text-blue-600"></i> Simulasi Gelombang & Perambatan Bunyi</h3>
+                    </div>
+                    <p class="text-xs text-slate-500">Atur frekuensi dan medium untuk mengamati kerapatan gelombang!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Canvas Canvas Gelombang -->
+                    <div class="lg:col-span-2 bg-slate-900 rounded-2xl p-3 flex flex-col justify-center items-center relative min-h-[260px]">
+                        <canvas id="soundCanvas" width="550" height="220" class="w-full h-auto rounded-xl bg-slate-950"></canvas>
+                        <div class="absolute top-5 left-5 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs text-white border border-white/10">
+                            Status Medium: <span id="sound-medium-label" class="font-bold text-cyan-400">Udara (Gas)</span>
+                        </div>
+                    </div>
+
+                    <!-- Kontrol Simulasi -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 flex justify-between">
+                                    <span>Frekuensi (Tinggi/Rendah Nada):</span>
+                                    <span id="freq-val" class="text-blue-600">5 Hz</span>
+                                </label>
+                                <input type="range" id="soundFreq" min="1" max="15" value="5" class="w-full mt-1 accent-blue-600">
+                            </div>
+
+                            <div>
+                                <label class="text-xs font-bold text-slate-600">Pilih Medium Perambatan:</label>
+                                <select id="soundMedium" onchange="updateSoundSim()" class="w-full mt-1 p-2 rounded-xl border border-slate-300 text-sm bg-white font-medium focus:ring-2 focus:ring-blue-500">
+                                    <option value="gas">Udara (Gas) - Lambat</option>
+                                    <option value="cair">Air (Zat Cair) - Sedang</option>
+                                    <option value="padat">Besi/Kayu (Zat Padat) - Sangat Cepat</option>
+                                    <option value="hampa">Ruang Hampa Udara - TIDAK MERAMBAT!</option>
+                                </select>
+                            </div>
+
+                            <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 text-xs text-blue-900 space-y-1">
+                                <i class="fa-solid fa-circle-info text-blue-600"></i>
+                                <span id="sound-info-text">
+                                    Pada zat gas, partikel renggang sehingga gelombang merambat lebih lambat.
+                                </span>
+                            </div>
+                        </div>
+
+                        <button onclick="playAudioTone()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded-xl transition btn-bounce flex items-center justify-center gap-2 text-sm shadow">
+                            <i class="fa-solid fa-volume-high"></i> Bunyikan Nada Simulasi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Percobaan Mandiri Bunyi -->
+            <div class="bg-amber-50 rounded-3xl p-6 border border-amber-200 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-amber-500 text-white p-3 rounded-2xl"><i class="fa-solid fa-flask text-xl"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-amber-900">Percobaan Aman 1: Telepon Kaleng Sederhana</h3>
+                        <p class="text-xs text-amber-700">Membuktikan bunyi merambat melalui zat padat (benang/tali)</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-4 rounded-2xl border border-amber-100">
+                        <h4 class="font-bold text-amber-800 mb-1">🛠️ Alat & Bahan:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">• 2 buah kaleng bekas/gelas plastik<br>• Benang kasur (2-3 meter)<br>• Paku kecil/jarum & solasi</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-amber-100">
+                        <h4 class="font-bold text-amber-800 mb-1">🧪 Langkah Kerja:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">1. Lubangi dasar kedua gelas.<br>2. Masukkan benang lalu ikat simpul di dalam.<br>3. Minta temanmu memegang 1 gelas dan rentangkan benang hingga tegang.<br>4. Bisikkan kata melalui gelas!</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-amber-100">
+                        <h4 class="font-bold text-amber-800 mb-1">🔍 Kesimpulan:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Getaran suaramu merambat melalui benang yang tegang (zat padat) langsung ke telinga temanmu lebih jelas dibanding udara terbuka.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MATERI & SIMULASI CAHAYA -->
+        <section id="page-cahaya" class="page-content hidden space-y-8">
+            <div class="flex items-center justify-between bg-amber-500 text-white p-6 rounded-3xl shadow-lg">
+                <div>
+                    <span class="bg-amber-300 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase">Bagian 2</span>
+                    <h2 class="text-3xl font-bold mt-1">Materi & Sifat-Sifat Cahaya</h2>
+                    <p class="text-amber-100 text-sm mt-1">Menjelajahi fenomena pembiasan, pemantulan, dan terbentuknya bayangan.</p>
+                </div>
+                <i class="fa-solid fa-sun text-5xl opacity-30 hidden sm:block"></i>
+            </div>
+
+            <!-- Kartu Sifat Cahaya Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="text-amber-500 text-2xl"><i class="fa-solid fa-arrows-to-dot"></i></div>
+                    <h3 class="font-bold text-slate-800">1. Merambat Lurus</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Cahaya selalu bergerak lurus jika tidak dihalangi. Contoh: Sorot lampu mobil di malam hari.</p>
+                </div>
+                <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="text-amber-500 text-2xl"><i class="fa-solid fa-square-full"></i></div>
+                    <h3 class="font-bold text-slate-800">2. Menembus Benda Bening</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Cahaya dapat melewati benda transparan seperti kaca akuarium atau plastik bening.</p>
+                </div>
+                <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="text-amber-500 text-2xl"><i class="fa-solid fa-repeat"></i></div>
+                    <h3 class="font-bold text-slate-800">3. Dapat Dipantulkan</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Saat mengenai permukaan licin seperti cermin datar, cahaya akan memantul teratur.</p>
+                </div>
+                <div class="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm space-y-2">
+                    <div class="text-amber-500 text-2xl"><i class="fa-solid fa-glass-water"></i></div>
+                    <h3 class="font-bold text-slate-800">4. Dapat Dibiaskan</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Cahaya dibelokkan saat berpindah antar dua medium berbeda (contoh: pensil dalam gelas air tampak patah).</p>
+                </div>
+            </div>
+
+            <!-- SIMULASI CAHAYA & PEMBENTUKAN BAYANGAN -->
+            <div class="bg-white p-6 rounded-3xl shadow-md border border-amber-200 space-y-4">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+                    <div>
+                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-lg">Lab Interaktif</span>
+                        <h3 class="text-xl font-bold text-slate-800 mt-1"><i class="fa-solid fa-lightbulb text-amber-500"></i> Simulasi Pembentukan Bayangan & Pemantulan</h3>
+                    </div>
+                    <p class="text-xs text-slate-500">Geser posisi senter atau ubah jenis cermin/penghalang!</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Canvas Cahaya -->
+                    <div class="lg:col-span-2 bg-slate-950 rounded-2xl p-3 flex flex-col justify-center items-center relative min-h-[260px]">
+                        <canvas id="lightCanvas" width="550" height="220" class="w-full h-auto rounded-xl border border-slate-800"></canvas>
+                    </div>
+
+                    <!-- Kontrol Simulasi Cahaya -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-4 flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs font-bold text-slate-600">Mode Simulasi:</label>
+                                <select id="lightMode" onchange="updateLightSim()" class="w-full mt-1 p-2 rounded-xl border border-slate-300 text-sm bg-white font-medium focus:ring-2 focus:ring-amber-500">
+                                    <option value="bayangan">Pembentukan Bayangan (Benda Gelap)</option>
+                                    <option value="pemantulan">Pemantulan Cahaya (Cermin Datar)</option>
+                                    <option value="pembiasan">Pembiasan Cahaya (Kaca / Air)</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="text-xs font-bold text-slate-600 flex justify-between">
+                                    <span>Posisi Sumber Cahaya (Senter):</span>
+                                    <span id="light-pos-val" class="text-amber-600">Dekat</span>
+                                </label>
+                                <input type="range" id="lightPos" min="50" max="250" value="100" class="w-full mt-1 accent-amber-500">
+                            </div>
+
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 text-xs text-amber-900 space-y-1">
+                                <i class="fa-solid fa-circle-info text-amber-600"></i>
+                                <span id="light-info-text">
+                                    Semakin dekat sumber cahaya ke benda padat, ukuran bayangan di layar akan menjadi semakin besar!
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-500 bg-white p-3 rounded-xl border border-slate-200">
+                            <strong>Aplikasi Sehari-hari:</strong> Kaca spion mobil, panggung wayang kulit, dan pembentukan pelangi setelah hujan.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Percobaan Mandiri Cahaya -->
+            <div class="bg-cyan-50 rounded-3xl p-6 border border-cyan-200 space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="bg-cyan-600 text-white p-3 rounded-2xl"><i class="fa-solid fa-vial text-xl"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-cyan-900">Percobaan Aman 2: Pensil Bengkok dalam Gelas (Pembiasan)</h3>
+                        <p class="text-xs text-cyan-700">Membuktikan pembelokan cahaya saat melewati dua medium berbeda</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white p-4 rounded-2xl border border-cyan-100">
+                        <h4 class="font-bold text-cyan-800 mb-1">🛠️ Alat & Bahan:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">• Gelas bening transparan<br>• Air secukupnya<br>• 1 buah pensil kayu</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-cyan-100">
+                        <h4 class="font-bold text-cyan-800 mb-1">🧪 Langkah Kerja:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">1. Isi gelas bening dengan air hingga ¾ penuh.<br>2. Celupkan pensil secara miring ke dalam gelas.<br>3. Amati pensil dari samping gelas sejajar mata!</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-cyan-100">
+                        <h4 class="font-bold text-cyan-800 mb-1">🔍 Kesimpulan:</h4>
+                        <p class="text-slate-600 text-xs leading-relaxed">Pensil tampak patah/bengkok karena berkas cahaya melaju dari udara ke air (medium berbeda kerapatan) mengalami <strong>pembiasan</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. LKPD DIGITAL -->
+        <section id="page-lkpd" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+                <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b pb-4">
+                    <div>
+                        <span class="text-purple-600 font-semibold text-sm uppercase tracking-wider">Lembar Kerja Peserta Didik (LKPD)</span>
+                        <h2 class="text-3xl font-bold text-slate-800 mt-1">Laporan Hasil Pengamatan</h2>
+                        <p class="text-slate-500 text-sm">Isi lembar kerja ini berdasarkan hasil percobaan & simulasi yang telah kamu lakukan.</p>
+                    </div>
+                    <button onclick="copyLKPD()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold px-5 py-2.5 rounded-2xl transition btn-bounce flex items-center gap-2 text-sm shadow">
+                        <i class="fa-solid fa-copy"></i> Salin Teks LKPD (Untuk Google Docs)
+                    </button>
+                </div>
+
+                <!-- Form Identitas Siswa -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-purple-50 p-4 rounded-2xl border border-purple-100">
+                    <div>
+                        <label class="block text-xs font-bold text-purple-900 mb-1">Nama Lengkap Siswa:</label>
+                        <input type="text" id="lkpd-nama" placeholder="Contoh: Ahmad Raihan" class="w-full p-2.5 rounded-xl border border-purple-200 text-sm focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-purple-900 mb-1">Kelas / No. Absen:</label>
+                        <input type="text" id="lkpd-kelas" placeholder="Kelas V A / 12" class="w-full p-2.5 rounded-xl border border-purple-200 text-sm focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-purple-900 mb-1">Sekolah:</label>
+                        <input type="text" id="lkpd-sekolah" value="SD Negeri 005 Singkep" class="w-full p-2.5 rounded-xl border border-purple-200 text-sm focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+
+                <!-- Pertanyaan Laporan LKPD -->
+                <div class="space-y-6">
+                    <div class="space-y-2">
+                        <label class="block font-bold text-slate-800 text-sm">1. Pertanyaan Perambatan Bunyi:</label>
+                        <p class="text-xs text-slate-500">Berdasarkan simulasi, mengapa bunyi dapat merambat melalui tali/benang tegang tetapi tidak dapat merambat di ruang hampa udara?</p>
+                        <textarea id="lkpd-q1" rows="3" placeholder="Tuliskan jawabanmu di sini..." class="w-full p-3 rounded-2xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-500"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block font-bold text-slate-800 text-sm">2. Pertanyaan Percobaan Cahaya:</label>
+                        <p class="text-xs text-slate-500">Apa yang terjadi pada pensil ketika dicelupkan ke dalam gelas berisi air? Mengapa hal tersebut bisa terjadi?</p>
+                        <textarea id="lkpd-q2" rows="3" placeholder="Tuliskan jawabanmu di sini..." class="w-full p-3 rounded-2xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-500"></textarea>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block font-bold text-slate-800 text-sm">3. Penerapan Sehari-hari:</label>
+                        <p class="text-xs text-slate-500">Sebutkan 3 benda di sekitarmu yang memanfaatkan sifat cahaya memantul atau menembus benda bening!</p>
+                        <textarea id="lkpd-q3" rows="3" placeholder="Tuliskan jawabanmu di sini..." class="w-full p-3 rounded-2xl border border-slate-200 text-sm focus:ring-2 focus:ring-purple-500"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. KUIS EVALUASI -->
+        <section id="page-kuis" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+                <!-- Header Kuis -->
+                <div class="flex flex-col md:flex-row justify-between md:items-center gap-4 border-b pb-4">
+                    <div>
+                        <span class="text-emerald-600 font-semibold text-sm uppercase tracking-wider">Uji Pemahaman</span>
+                        <h2 class="text-3xl font-bold text-slate-800 mt-1">Evaluasi Pembelajaran IPAS</h2>
+                        <p class="text-slate-500 text-sm">Jawablah 10 pertanyaan pilihan ganda di bawah ini dengan teliti!</p>
+                    </div>
+                    <div class="bg-emerald-50 px-4 py-2 rounded-2xl border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-award text-lg text-emerald-600"></i>
+                        <span>10 Soal • Skor Max: 100</span>
+                    </div>
+                </div>
+
+                <!-- Container Soal-Soal -->
+                <div id="quiz-container" class="space-y-8">
+                    <!-- Dinamis Diisi melalui JavaScript -->
+                </div>
+
+                <!-- Tombol Submit Kuis -->
+                <div class="pt-4 flex justify-end">
+                    <button id="submit-quiz-btn" onclick="submitQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-2xl transition btn-bounce flex items-center gap-2 shadow-lg text-base">
+                        <i class="fa-solid fa-paper-plane"></i> Selesaikan & Lihat Hasil Evaluasi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. HASIL EVALUASI MODAL / SECTION -->
+        <section id="page-hasil" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 text-center space-y-6">
+                <div class="max-w-md mx-auto space-y-3">
+                    <div class="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mx-auto text-emerald-600 text-4xl shadow-inner">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-800">Hasil Evaluasi Belajar</h2>
+                    <p class="text-slate-500 text-sm">Selamat! Kamu telah menyelesaikan evaluasi materi Bunyi dan Cahaya.</p>
+                </div>
+
+                <!-- Display Skor -->
+                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-6 max-w-sm mx-auto space-y-2">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Skor Akhir Kamu</span>
+                    <div id="final-score-val" class="text-6xl font-bold text-emerald-600">0</div>
+                    <p id="score-feedback" class="text-xs text-slate-600 font-medium">Umpan balik evaluasi...</p>
+                </div>
+
+                <!-- Opsi Ekspor CSV & Ulangi -->
+                <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button onclick="exportResultToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3 rounded-2xl transition btn-bounce flex items-center gap-2 text-sm shadow">
+                        <i class="fa-solid fa-file-csv"></i> Ekspor Hasil ke CSV (Google Sheets)
+                    </button>
+                    <button onclick="resetQuiz()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-5 py-3 rounded-2xl transition btn-bounce flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-rotate-right"></i> Ulangi Kuis
+                    </button>
+                </div>
+
+                <!-- Pembahasan Soal Detail -->
+                <div class="text-left mt-8 border-t pt-6 space-y-4">
+                    <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-blue-600"></i> Pembahasan Lengkap Jawaban
+                    </h3>
+                    <div id="quiz-review-container" class="space-y-4">
+                        <!-- Pembahasan akan dimasukkan via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. REFLEKSI BELAJAR -->
+        <section id="page-refleksi" class="page-content hidden space-y-6">
+            <div class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 space-y-6">
+                <div class="border-b pb-4">
+                    <span class="text-rose-600 font-semibold text-sm uppercase tracking-wider">Refleksi Diri</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-1">Jurnal Perasaan & Pemahaman</h2>
+                    <p class="text-slate-500 text-sm">Bagaimana kesanmu setelah belajar materi Jelajah Bunyi dan Cahaya hari ini?</p>
+                </div>
+
+                <div class="space-y-6 max-w-2xl">
+                    <!-- Perasaan Belajar -->
+                    <div>
+                        <label class="block font-bold text-slate-800 text-sm mb-3">1. Bagaimana perasaanmu saat belajar hari ini?</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button onclick="selectEmoji(this)" class="emoji-btn p-4 rounded-2xl border-2 border-slate-200 text-center hover:border-rose-400 transition focus:outline-none">
+                                <div class="text-4xl">😃</div>
+                                <span class="text-xs font-bold text-slate-600 mt-1 block">Sangat Senang</span>
+                            </button>
+                            <button onclick="selectEmoji(this)" class="emoji-btn p-4 rounded-2xl border-2 border-slate-200 text-center hover:border-rose-400 transition focus:outline-none">
+                                <div class="text-4xl">🙂</div>
+                                <span class="text-xs font-bold text-slate-600 mt-1 block">Biasa Saja</span>
+                            </button>
+                            <button onclick="selectEmoji(this)" class="emoji-btn p-4 rounded-2xl border-2 border-slate-200 text-center hover:border-rose-400 transition focus:outline-none">
+                                <div class="text-4xl">🤔</div>
+                                <span class="text-xs font-bold text-slate-600 mt-1 block">Bingung</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Materi yang Paling Disukai -->
+                    <div class="space-y-2">
+                        <label class="block font-bold text-slate-800 text-sm">2. Bagian mana yang paling kamu sukai?</label>
+                        <select id="refleksi-bagian" class="w-full p-3 rounded-2xl border border-slate-200 text-sm focus:ring-2 focus:ring-rose-500">
+                            <option value="simulasi-bunyi">Simulasi Gelombang Bunyi</option>
+                            <option value="simulasi-cahaya">Simulasi Pembentukan Bayangan Cahaya</option>
+                            <option value="percobaan">Percobaan Telepon Kaleng & Pensil Bengkok</option>
+                            <option value="kuis">Mengerjakan Kuis Evaluasi</option>
+                        </select>
+                    </div>
+
+                    <!-- Tuliskan Pesan Refleksi -->
+                    <div class="space-y-2">
+                        <label class="block font-bold text-slate-800 text-sm">3. Hal baru apa yang kamu pelajari hari ini?</label>
+                        <textarea id="refleksi-catatan" rows="4" placeholder="Contoh: Saya baru tahu kalau bunyi tidak bisa merambat di ruang hampa udara..." class="w-full p-3 rounded-2xl border border-slate-200 text-sm focus:ring-2 focus:ring-rose-500"></textarea>
+                    </div>
+
+                    <button onclick="simpanRefleksi()" class="bg-rose-500 hover:bg-rose-600 text-white font-bold px-6 py-3 rounded-2xl transition btn-bounce flex items-center gap-2 text-sm shadow">
+                        <i class="fa-solid fa-heart"></i> Simpan Catatan Refleksi
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-10">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-medium text-slate-300">Media Pembelajaran Interaktif IPAS Kelas V SD - Jelajah Bunyi & Cahaya</p>
+            <p>Dikembangkan untuk SD Negeri 005 Singkep • Dapat dijalankan secara offline di HP & Laptop</p>
+            <p class="text-slate-500">© 2026 Pengembang Media Pembelajaran Digital IPAS</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Global State & Data Soal
+        const quizQuestions = [
+            {
+                q: "Setiap bunyi yang kita dengar sehari-hari dihasilkan oleh benda yang...",
+                options: ["Panas", "Bergetar", "Berwarna terang", "Didinginkan"],
+                answer: 1,
+                explain: "Bunyi selalu dihasilkan oleh benda yang bergetar. Getaran benda ini menggetarkan molekul di sekitarnya."
+            },
+            {
+                q: "Bunyi TIDAK BISA merambat di dalam media...",
+                options: ["Air (zat cair)", "Besi (zat padat)", "Ruang hampa udara", "Udara (gas)"],
+                answer: 2,
+                explain: "Bunyi adalah gelombang mekanik yang memerlukan zat perantara. Di ruang hampa tidak ada partikel untuk merambatkan getaran."
+            },
+            {
+                q: "Perambatan bunyi berlangsung PALING CEPAT melalui zat...",
+                options: ["Padat", "Cair", "Gas", "Hampa"],
+                answer: 0,
+                explain: "Zat padat memiliki kerapatan partikel paling rapat, sehingga getaran bunyi berpindah paling cepat."
+            },
+            {
+                q: "Bunyi pantul yang terdengar hampir bersamaan dengan bunyi asli sehingga memperjelas atau merusak suara asli disebut...",
+                options: ["Gema", "Gaung", "Nada", "Desah"],
+                answer: 1,
+                explain: "Gaung terjadi saat dinding pantul dekat, sehingga bunyi pantul datang hampir bersamaan dengan bunyi asli."
+            },
+            {
+                q: "Mengapa cahaya Matahari bisa sampai ke Bumi meskipun melewati ruang hampa udara di luar angkasa?",
+                options: [
+                    "Cahaya dibantu oleh angin surya",
+                    "Cahaya dapat merambat tanpa membutuhkan medium",
+                    "Cahaya berubah menjadi gelombang bunyi",
+                    "Cahaya didorong oleh gravitasi"
+                ],
+                answer: 1,
+                explain: "Cahaya adalah gelombang elektromagnetik yang mampu merambat melalui ruang hampa udara tanpa perantara."
+            },
+            {
+                q: "Ketika kamu menyalakan lampu senter di lorong yang lurus, peristiwa tersebut membuktikan sifat cahaya...",
+                options: ["Dapat dibiaskan", "Merambat lurus", "Menembus benda gelap", "Dapat diuraikan"],
+                answer: 1,
+                explain: "Sorot cahaya lampu senter berjalan lurus mengarah ke depan tanpa membelok sendiri."
+            },
+            {
+                q: "Pensil yang dimasukkan ke dalam gelas berisi air bersih terlihat seolah-olah patah/bengkok. Hal ini disebabkan oleh...",
+                options: ["Pemantulan cahaya", "Pembiasan cahaya", "Penyerapan cahaya", "Penguraian cahaya"],
+                answer: 1,
+                explain: "Pembiasan terjadi karena berkas cahaya melintasi dua medium yang berbeda kerapatannya (udara dan air)."
+            },
+            {
+                q: "Bayangan tubuh kita akan terbentuk di tanah apabila tubuh kita menghalangi cahaya matahari. Hal ini terjadi karena tubuh kita termasuk...",
+                options: ["Benda bening", "Benda gelap (tidak tembus cahaya)", "Benda transparan", "Sumber cahaya"],
+                answer: 1,
+                explain: "Benda gelap tidak dapat ditembus oleh cahaya, sehingga area di belakangnya yang terlindung menjadi bayangan."
+            },
+            {
+                q: "Jika sumber cahaya didekatkan ke arah benda padat, maka ukuran bayangan benda di layar akan menjadi...",
+                options: ["Semakin kecil", "Semakin besar", "Tetap sama", "Hilang total"],
+                answer: 1,
+                explain: "Semakin dekat sumber cahaya ke benda, sudut halangan cahaya semakin lebar sehingga bayangan yang terbentuk makin besar."
+            },
+            {
+                q: "Manakah di bawah ini yang merupakan alat yang memanfaatkan sifat pemantulan cahaya?",
+                options: ["Kaca pembesar (Lup)", "Cermin spion kendaraan", "Akuarium", "Sedotan minuman"],
+                answer: 1,
+                explain: "Cermin spion memanfaatkan pemantulan cahaya untuk melihat objek di belakang kendaraan."
+            }
+        ];
+
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+        let selectedEmojiRating = "";
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
+            
+            // Show selected page
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Trigger canvas redraws when navigating to simulation pages
+            if (pageId === 'bunyi') {
+                setTimeout(initSoundCanvas, 100);
+            } else if (pageId === 'cahaya') {
+                setTimeout(initLightCanvas, 100);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function showToast(msg, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = msg;
+            toastIcon.className = isSuccess 
+                ? "fa-solid fa-circle-check text-green-400 text-xl" 
+                : "fa-solid fa-triangle-exclamation text-amber-400 text-xl";
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Canvas Sound Simulation
+        let soundAnimId = null;
+        let soundStep = 0;
+
+        function initSoundCanvas() {
+            const canvas = document.getElementById('soundCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const freqInput = document.getElementById('soundFreq');
+            
+            freqInput.oninput = function() {
+                document.getElementById('freq-val').innerText = this.value + " Hz";
+            };
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const freq = parseInt(freqInput.value);
+                const medium = document.getElementById('soundMedium').value;
+
+                let speed = 2;
+                let color = "#38BDF8";
+
+                if (medium === 'gas') {
+                    speed = 2;
+                    color = "#38BDF8";
+                } else if (medium === 'cair') {
+                    speed = 4;
+                    color = "#60A5FA";
+                } else if (medium === 'padat') {
+                    speed = 8;
+                    color = "#818CF8";
+                } else if (medium === 'hampa') {
+                    speed = 0;
+                }
+
+                // Draw speaker source
+                ctx.fillStyle = "#F59E0B";
+                ctx.beginPath();
+                ctx.moveTo(30, 80);
+                ctx.lineTo(60, 80);
+                ctx.lineTo(90, 50);
+                ctx.lineTo(90, 170);
+                ctx.lineTo(60, 140);
+                ctx.lineTo(30, 140);
+                ctx.closePath();
+                ctx.fill();
+
+                if (medium !== 'hampa') {
+                    // Draw longitudinal sound waves
+                    soundStep += speed;
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 3;
+
+                    for (let x = 100; x < canvas.width - 40; x += 30) {
+                        const waveX = (x + soundStep) % (canvas.width - 100) + 100;
+                        const opacity = 1 - (waveX / canvas.width);
+                        ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+
+                        ctx.beginPath();
+                        ctx.arc(90, 110, waveX - 90, -Math.PI / 3, Math.PI / 3);
+                        ctx.stroke();
+                    }
+                } else {
+                    // Draw Vacuum X sign
+                    ctx.fillStyle = "#EF4444";
+                    ctx.font = "bold 16px Inter";
+                    ctx.fillText("❌ GELOMBANG TIDAK DAPAT MERAMBAT (RUANG HAMPA)", 110, 115);
+                }
+
+                soundAnimId = requestAnimationFrame(draw);
+            }
+
+            if (soundAnimId) cancelAnimationFrame(soundAnimId);
+            draw();
+        }
+
+        function updateSoundSim() {
+            const medium = document.getElementById('soundMedium').value;
+            const label = document.getElementById('sound-medium-label');
+            const info = document.getElementById('sound-info-text');
+
+            if (medium === 'gas') {
+                label.innerText = "Udara (Gas)";
+                info.innerText = "Pada zat gas, jarak partikel renggang sehingga gelombang bunyi merambat dengan kecepatan standar.";
+            } else if (medium === 'cair') {
+                label.innerText = "Air (Zat Cair)";
+                info.innerText = "Pada zat cair, partikel lebih rapat daripada gas. Bunyi merambat lebih cepat!";
+            } else if (medium === 'padat') {
+                label.innerText = "Besi/Kayu (Zat Padat)";
+                info.innerText = "Pada zat padat, partikel sangat rapat dan terikat kuat. Bunyi merambat PALING CEPAT!";
+            } else if (medium === 'hampa') {
+                label.innerText = "Ruang Hampa (Vakum)";
+                info.innerText = "TIDAK ADA partikel zat perantara sama sekali. Bunyi SAMA SEKALI TIDAK BISA MERAMBAT!";
+            }
+        }
+
+        function playAudioTone() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) {
+                    showToast("Browser tidak mendukung Audio Synthesis.", false);
+                    return;
+                }
+                const audioCtx = new AudioContext();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                const freqVal = document.getElementById('soundFreq').value;
+                osc.frequency.value = 200 + (freqVal * 40);
+                osc.type = 'sine';
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 1);
+                setTimeout(() => osc.stop(), 1000);
+
+                showToast("🔊 Nada bunyi dihasilkan oleh getaran!");
+            } catch (e) {
+                showToast("Klik di layar terlebih dahulu untuk mengaktifkan audio.", false);
+            }
+        }
+
+        // Canvas Light Simulation
+        let lightAnimId = null;
+
+        function initLightCanvas() {
+            const canvas = document.getElementById('lightCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const posInput = document.getElementById('lightPos');
+
+            posInput.oninput = function() {
+                const val = parseInt(this.value);
+                document.getElementById('light-pos-val').innerText = val < 100 ? "Sangat Dekat" : val < 180 ? "Sedang" : "Jauh";
+            };
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const mode = document.getElementById('lightMode').value;
+                const torchX = parseInt(posInput.value);
+
+                if (mode === 'bayangan') {
+                    // Draw flashlight
+                    ctx.fillStyle = "#F59E0B";
+                    ctx.fillRect(torchX - 40, 100, 40, 20);
+
+                    // Light Beam
+                    ctx.fillStyle = "rgba(251, 191, 36, 0.3)";
+                    ctx.beginPath();
+                    ctx.moveTo(torchX, 110);
+                    ctx.lineTo(450, 40);
+                    ctx.lineTo(450, 180);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Object (Opaque block)
+                    ctx.fillStyle = "#475569";
+                    ctx.fillRect(300, 80, 20, 60);
+
+                    // Screen Wall
+                    ctx.fillStyle = "#94A3B8";
+                    ctx.fillRect(450, 30, 10, 160);
+
+                    // Shadow on Wall (Calculated from perspective)
+                    const shadowHeight = 60 + ((250 - torchX) * 0.4);
+                    const shadowY = 110 - (shadowHeight / 2);
+
+                    ctx.fillStyle = "#0F172A";
+                    ctx.fillRect(451, shadowY, 8, shadowHeight);
+
+                } else if (mode === 'pemantulan') {
+                    // Flashlight
+                    ctx.fillStyle = "#F59E0B";
+                    ctx.fillRect(50, 170, 40, 20);
+
+                    // Mirror
+                    ctx.fillStyle = "#38BDF8";
+                    ctx.fillRect(250, 30, 10, 160);
+
+                    // Incident Light Ray
+                    ctx.strokeStyle = "#FBBF24";
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(90, 180);
+                    ctx.lineTo(250, 110);
+                    ctx.stroke();
+
+                    // Reflected Light Ray
+                    ctx.strokeStyle = "#F59E0B";
+                    ctx.beginPath();
+                    ctx.moveTo(250, 110);
+                    ctx.lineTo(90, 40);
+                    ctx.stroke();
+
+                    // Normal Line
+                    ctx.setLineDash([4, 4]);
+                    ctx.strokeStyle = "#94A3B8";
+                    ctx.lineWidth = 1.5;
+                    ctx.beginPath();
+                    ctx.moveTo(150, 110);
+                    ctx.lineTo(300, 110);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+
+                } else if (mode === 'pembiasan') {
+                    // Glass Water Container
+                    ctx.fillStyle = "rgba(14, 165, 233, 0.2)";
+                    ctx.fillRect(250, 40, 200, 140);
+                    ctx.strokeStyle = "#0284C7";
+                    ctx.strokeRect(250, 40, 200, 140);
+
+                    // Pencil in Water
+                    ctx.strokeStyle = "#F59E0B";
+                    ctx.lineWidth = 6;
+                    
+                    // Air part of pencil
+                    ctx.beginPath();
+                    ctx.moveTo(150, 30);
+                    ctx.lineTo(250, 110);
+                    ctx.stroke();
+
+                    // Refracted part in water (offset angle)
+                    ctx.strokeStyle = "#D97706";
+                    ctx.beginPath();
+                    ctx.moveTo(250, 110);
+                    ctx.lineTo(330, 160);
+                    ctx.stroke();
+
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.font = "12px Inter";
+                    ctx.fillText("Udara", 180, 70);
+                    ctx.fillText("Air (Dibiaskan)", 270, 140);
+                }
+
+                lightAnimId = requestAnimationFrame(draw);
+            }
+
+            if (lightAnimId) cancelAnimationFrame(lightAnimId);
+            draw();
+        }
+
+        function updateLightSim() {
+            const mode = document.getElementById('lightMode').value;
+            const info = document.getElementById('light-info-text');
+
+            if (mode === 'bayangan') {
+                info.innerText = "Semakin dekat sumber cahaya ke benda padat, sudut halangan cahaya semakin besar sehingga bayangan di layar membengkak besar!";
+            } else if (mode === 'pemantulan') {
+                info.innerText = "Hukum Pemantulan: Sudut sinar datang sama besar dengan sudut sinar pantul terhadap garis normal cermin.";
+            } else if (mode === 'pembiasan') {
+                info.innerText = "Pembiasan terjadi saat cahaya melintasi dua medium dengan kerapatan berbeda (udara ke air), membuat pensil terlihat patah.";
+            }
+        }
+
+        function copyLKPD() {
+            const nama = document.getElementById('lkpd-nama').value || '[Belum diisi]';
+            const kelas = document.getElementById('lkpd-kelas').value || '[Belum diisi]';
+            const sekolah = document.getElementById('lkpd-sekolah').value || '[Belum diisi]';
+            const q1 = document.getElementById('lkpd-q1').value || '[Belum dijawab]';
+            const q2 = document.getElementById('lkpd-q2').value || '[Belum dijawab]';
+            const q3 = document.getElementById('lkpd-q3').value || '[Belum dijawab]';
+
+            const lkpdText = `================================================
+LEMBAR KERJA PESERTA DIDIK (LKPD) - IPAS KELAS V
+Materi: Jelajah Bunyi dan Cahaya
+================================================
+Nama Siswa : ${nama}
+Kelas      : ${kelas}
+Sekolah    : ${sekolah}
+
+1. Mengapa bunyi merambat melalui benang tegang tetapi tidak di ruang hampa?
+Jawaban:
+${q1}
+
+2. Apa yang terjadi saat pensil dicelupkan ke dalam air? Mengapa demikian?
+Jawaban:
+${q2}
+
+3. Tuliskan 3 contoh penerapan sifat cahaya di sekitarmu!
+Jawaban:
+${q3}
+================================================`;
+
+            // Fallback copy using textarea execution
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = lkpdText;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast("📋 Laporan LKPD berhasil disalin! Tempelkan ke Google Docs.");
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = "";
+
+            quizQuestions.forEach((item, qIdx) => {
+                const qBox = document.createElement('div');
+                qBox.className = "bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3";
+                
+                let optionsHTML = "";
+                item.options.forEach((opt, oIdx) => {
+                    optionsHTML += `
+                        <label class="flex items-center gap-3 p-3 rounded-xl bg-white border border-slate-200 cursor-pointer hover:bg-emerald-50 transition">
+                            <input type="radio" name="question-${qIdx}" value="${oIdx}" onchange="selectAnswer(${qIdx}, ${oIdx})" class="w-4 h-4 accent-emerald-600">
+                            <span class="text-sm text-slate-700 font-medium">${opt}</span>
+                        </label>
+                    `;
+                });
+
+                qBox.innerHTML = `
+                    <div class="flex items-start gap-2">
+                        <span class="bg-emerald-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg shrink-0">${qIdx + 1}</span>
+                        <h4 class="font-bold text-slate-800 text-base">${item.q}</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-1">
+                        ${optionsHTML}
+                    </div>
+                `;
+                container.appendChild(qBox);
+            });
+        }
+
+        function selectAnswer(qIdx, optionIdx) {
+            userAnswers[qIdx] = optionIdx;
+        }
+
+        function submitQuiz() {
+            // Check if all answered
+            const unanswered = userAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                showToast(`Masih ada ${unanswered} soal yang belum dijawab!`, false);
+                return;
+            }
+
+            // Calculate score
+            let correctCount = 0;
+            quizQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.answer) {
+                    correctCount++;
+                }
+            });
+
+            const score = (correctCount / quizQuestions.length) * 100;
+
+            // Render score view
+            document.getElementById('final-score-val').innerText = score;
+            const feedback = document.getElementById('score-feedback');
+            if (score >= 80) {
+                feedback.innerText = "🎉 Luar Biasa! Pemahamanmu tentang Bunyi dan Cahaya sangat matang!";
+            } else if (score >= 60) {
+                feedback.innerText = "👍 Bagus! Kamu sudah memahami sebagian besar materi dengan baik.";
+            } else {
+                feedback.innerText = "💪 Tetap Semangat! Pelajari kembali materi dan coba ulang kuisnya ya.";
+            }
+
+            // Render Review
+            const reviewContainer = document.getElementById('quiz-review-container');
+            reviewContainer.innerHTML = "";
+
+            quizQuestions.forEach((q, idx) => {
+                const isCorrect = userAnswers[idx] === q.answer;
+                const revBox = document.createElement('div');
+                revBox.className = `p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-rose-50 border-rose-200'} space-y-2 text-sm`;
+
+                revBox.innerHTML = `
+                    <div class="flex items-center justify-between font-bold">
+                        <span>Soal No. ${idx + 1}</span>
+                        <span class="${isCorrect ? 'text-emerald-600' : 'text-rose-600'}">
+                            ${isCorrect ? '✓ Benar (+10)' : '✕ Salah'}
+                        </span>
+                    </div>
+                    <p class="text-slate-800">${q.q}</p>
+                    <p class="text-xs">Jawaban Kamu: <strong>${q.options[userAnswers[idx]]}</strong></p>
+                    ${!isCorrect ? `<p class="text-xs text-emerald-700">Jawaban Tepat: <strong>${q.options[q.answer]}</strong></p>` : ''}
+                    <div class="bg-white/80 p-2.5 rounded-xl text-xs text-slate-600 border border-slate-100">
+                        💡 <strong>Pembahasan:</strong> ${q.explain}
+                    </div>
+                `;
+                reviewContainer.appendChild(revBox);
+            });
+
+            showPage('hasil');
+        }
+
+        function resetQuiz() {
+            userAnswers.fill(null);
+            renderQuiz();
+            showPage('kuis');
+            showToast("Kuis telah direset. Silakan kerjakan kembali!");
+        }
+
+        function exportResultToCSV() {
+            const nama = document.getElementById('lkpd-nama').value || 'Siswa_SDN_005';
+            const score = document.getElementById('final-score-val').innerText;
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Nama Siswa,Sekolah,Materi,Skor Akhir,Tanggal\n";
+            csvContent += `"${nama}","SD Negeri 005 Singkep","IPAS - Bunyi & Cahaya",${score},"${new Date().toLocaleDateString('id-ID')}"\n`;
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Hasil_Kuis_${nama.replace(/\s+/g, '_')}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            showToast("📊 File CSV berhasil diunduh! Siap dibuka di Google Sheets.");
+        }
+
+        function selectEmoji(btn) {
+            document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('border-rose-500', 'bg-rose-50'));
+            btn.classList.add('border-rose-500', 'bg-rose-50');
+            selectedEmojiRating = btn.innerText;
+        }
+
+        function simpanRefleksi() {
+            const catatan = document.getElementById('refleksi-catatan').value;
+            if (!catatan) {
+                showToast("Tuliskan catatan refleksimu terlebih dahulu!", false);
+                return;
+            }
+            showToast("❤️ Catatan refleksi berhasil disimpan! Terima kasih.");
+        }
+
+        window.onload = function() {
+            renderQuiz();
+            initSoundCanvas();
+            initLightCanvas();
+        };
+    </script>
+</body>
+</html>
